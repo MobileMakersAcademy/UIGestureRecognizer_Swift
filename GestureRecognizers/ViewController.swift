@@ -8,18 +8,35 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController
+{
 
-    override func viewDidLoad() {
+    @IBOutlet weak var greenView: UIView!
+    @IBOutlet weak var blueView: UIView!
+    var isBlue = true
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
     }
+    @IBAction func changeBackgroundColorOnTapped(sender: UITapGestureRecognizer)
+    {
+        if isBlue == true
+        {
+            blueView.backgroundColor = UIColor.redColor()
+            isBlue = false
+        }
+        else
+        {
+            blueView.backgroundColor = UIColor.blueColor()
+            isBlue = true
+        }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-
+    @IBAction func didStartPanningView(sender: UIPanGestureRecognizer)
+    {
+        var point = sender.locationInView(view)
+        blueView.center = CGPointMake(point.x, point.y)
+    }
 }
 
